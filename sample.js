@@ -9,7 +9,6 @@
 
         var headerFixTable = $('<table id="datatable_fix_header" class="table table-bordered table-condensed table-hover table-striped"><thead></thead></table>');
         $(headerFixTable).append($(yotei).find('thead').find('th').first().clone(false));
-        //var headerFixTable = $(yotei).clone(false);
         var headerFixWrapper = $('<div id="datatable_fix_header"></div>');
         $(headerFixTable).find('thead').find('tr').find('th:not(:first)').remove();
         $(headerFixTable).find('tbody').remove();
@@ -23,9 +22,7 @@
 
         var headerTable = $('<table id="header_table" class="table table-bordered table-condensed table-hover table-striped"></table>');
         $(headerTable).append($(yotei).find('thead').clone(false));
-        //var headerTable = $(yotei).clone(false);
         var headerWrapper = $('<div id="datatable_header"></div>');
-        //$(headerTable).find('tbody').remove();
         $(headerTable).find('thead').find('th').first().remove();
         $(headerTable).height(headerHeight);
         $(headerTable).attr('id', 'header_table');
@@ -42,11 +39,7 @@
         $(yotei).find('tr').each(function () {
             $(headerColTable).append($(this).clone(false));
         });
-        //var headerColTable = $(yotei).clone(false);
         var headerColWrapper = $('<div id="datatable_col_header"></div>');
-        //$(headerColTable).find('thead').remove();
-        //$(headerColTable).find('tr').find('td:not(:first)').remove();
-        //$(headerColTable).attr('id', 'header_col_table');
         $(headerColTable).addClass('calendar-date');
         $(headerColTable).find('tr').find('td').css('vertical-align', 'middle');
         $(headerColTable).find('tr').height($(wrapper).find('tr').first().height());
@@ -57,7 +50,6 @@
         $(headerColWrapper).insertBefore($(wrapper));
 
         $(yotei).find('tr').find('td:first').remove();
-        //$(yotei).find('tr').find('td').width(employeeWidth);
 
         $(wrapper).css('position', 'absolute').css('top', headerHeight).css('left', $(headerColWrapper).width());
         $(wrapper).width($(wrapper).width() - $(headerColWrapper).width());
