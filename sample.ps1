@@ -1,6 +1,7 @@
 $source = "C:\work\test"
 $destination = "C:\work\backup"
-$delyear = -7
+#$delyear = -7
+$delyear = 0
 $today = Get-Date
 
 # 指定フォルダ以下のファイルをバックアップ先フォルダに移動する。
@@ -20,7 +21,9 @@ Move-Item $sourceFile $destinationpath
 
 
 # ７年以上経過していた場合、ファイルを削除する。
-$LastWrite = $today.AddYears($delyears)
+$LastWrite = $today.AddYears($delyear)
+write-host $LastWrite -ForegroundColor "Red" 
+
 $Files = Get-Childitem $destination -Recurse | Where {$_.LastWriteTime -le $LastWrite}
 foreach ($File in $Files)
 {
@@ -28,8 +31,7 @@ foreach ($File in $Files)
     {
         write-host $File.LastWriteTime -ForegroundColor "DarkRed" 
         write-host "Deleting File $File " -ForegroundColor "DarkRed" 
-        Remove-Item $File.FullName
+        Remove-Item $File.FullName -Recurse
     }
 }
-# Get-ChildItem $destination | Where-Object {$_.LastWriteTime -lt (Get-Date).AddYears($delyears)} | ForEach-Object {$_.Delete()}
 
